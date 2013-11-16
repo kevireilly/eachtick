@@ -21,17 +21,15 @@ function eachtick(obj, iterator, complete){
   var keys = Object.keys(obj);
   (function iterate(keys){
     process.nextTick(function(){
-      // No more keys, no more iterating
-      if (!keys[0]) {
-        if (complete) complete();
-      } else {
-        // Return the key / value pair
-        iterator(keys[0], obj[keys[0]]);
+      // Return the key / value pair, wait for next callback
+      iterator(keys[0], obj[keys[0]], function next(err, stop){
+        // Stop iterating on error or stop instruction
+        if (err || stop) return complete ? complete(err, stop) : false;
         // Check if we're done
         if (keys.length === 1) return complete ? complete() : true;
         // Grab a slice to go. Pepperoni please.
         return ((keys = keys.slice(1)).length && iterate(keys));
-      }
+      });
     });
   })(keys);
 };

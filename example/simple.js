@@ -1,7 +1,6 @@
 var eachtick = require('../eachtick.js');
 
-// Works with any object
-// (which means arrays too)
+// Works with any object or array
 var obj = {
   foo: 'bar',
   beep: ['boop'],
@@ -12,9 +11,9 @@ var obj = {
   error: true
 };
 
-// Provide an iterator and complete callback
-// Complete callbacks are optional
-// Calling next is mandatory
+// Provide an iterator() and complete() callback
+// complete() callbacks are optional
+// Calling next() is mandatory
 eachtick(obj, function iterator(key, value, next){
   console.log('Key: ' + key + ' Value: ' + JSON.stringify(value));
   if (key === 'stop') {

@@ -1,6 +1,6 @@
 {
   "name": "eachtick",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Non-blocking for loop styled iteration for Node.js",
   "main": "eachtick.js",
   "repository": {

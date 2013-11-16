@@ -1,19 +1,45 @@
 eachtick
 ========
 
-Non-blocking for loop styled iteration for Node.js
+Non-blocking asynchronous iteration for Node.js and the browser.
+
+`eachtick` iterates over objects or arrays on each tick of the event loop by
+calling an iterator function with a key, value, and completion callback. You
+can `break` out of iterations by passing an error or the stop instruction
+
+```javascript
+eachtick([1,2,3,4,5], function(index, value, next) { // Iterator
+  console.log(index, value);
+  // Break with an error
+  //next('error');
+  // Break without an error
+  next(null, true);
+}, function(err, stop) { // Iteration complete
+  if (err || stop) console.warn(err, stop);
+  console.log('Done');
+}
+```
 
 ## Installation
+### For Node.js
+Install `eachtick` from the npm repository
 ```
 npm install eachtick
+```
+Require `eachtick` in a script
+```javascript
+var eachtick = require('eachtick');
+```
+
+### For the browser
+Include `eachtick` on your page
+```html
+<script type="text/javascript" src="/js/eachtick.js"></script>
 ```
 
 ## Usage
 ```javascript
-var eachtick = require('../eachtick.js');
-
-// Works with any object
-// (which means arrays too)
+// Works with any object or array
 var obj = {
   foo: 'bar',
   beep: ['boop'],
@@ -24,9 +50,9 @@ var obj = {
   error: true
 };
 
-// Provide an iterator and complete callback
-// Complete callbacks are optional
-// Calling next is mandatory
+// Provide an iterator() and complete() callback
+// complete() callbacks are optional
+// Calling next() is mandatory
 eachtick(obj, function iterator(key, value, next){
   console.log('Key: ' + key + ' Value: ' + JSON.stringify(value));
   if (key === 'stop') {
@@ -59,6 +85,7 @@ eachtick(obj, function iterator(key, value, next){
 ## TODO
 * ~~Add iteration completed callback for asynchronous iterators~~
 * ~~Add ability to break out of iteration on errors or otherwise~~
+* ~~Add browser support~~
 * Produce performance comparison data
 * Produce examples
 * Unit Tests

@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title>Example</title>
+  </head>
+<body>
+  <div id="output"></div>
+  <script type="text/javascript" src="../eachtick.js"></script>
+  <script type="text/javascript">
+    // Works with any object or array
+    var output;
+    var obj = {
+      foo: 'bar',
+      beep: ['boop'],
+      yin: {
+        yang: true
+      },
+      loudnoises: function(key, next) {
+        var end = Date.now();
+        alert('Alert! for key: ' + key);
+        next();
+      },
+      1: 1,
+      2: 2,
+      3: 3,
+      4: 4,
+      5: 5,
+      //stop: true,
+      error: true
+    };
+
+    /*for (var i = 0; i < 1000; i++) {
+     obj[i] = { foo: 'bar' };
+     }*/
+
+    // Provide an iterator and complete callback
+    // Complete callbacks are optional
+    // Calling next is mandatory
+    eachtick(obj, function iterator(key, value, next){
+      output = document.getElementById('output');
+      output.innerHTML += 'Key: ' + key + ' Value: ' + JSON.stringify(value) + '<br />';
+      if (key === 'stop') {
+        // To `break` out of iteration without
+        // an error, provide a falsy 1st argument
+        // and a truthy 2nd argument
+        next(null, true);
+      } else if (key === 'error') {
+        // Simulate asynchronous task producing an error
+        setTimeout(function(){
+          // Return an error and stop iterating
+          next('Roger, we have uh oh');
+        }, 2500);
+      } else {
+        if (typeof value === 'function') return value(key, next);
+        // Continue to the next iteration
+        next();
+      }
+    }, function complete(err, stop) {
+      output = document.getElementById('output');
+      // Iteration has had an error,
+      // been asked to stop early,
+      // or completed successfully
+      if (err || stop) {
+        output.innerHTML += 'Error: ' + err + '<br />';
+        output.innerHTML += 'Stop: ' + stop + '<br />';
+      }
+      output.innerHTML += 'Iteration complete' + '<br />';
+    });
+  </script>
+</body>
+</html>

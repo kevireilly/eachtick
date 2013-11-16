@@ -20,7 +20,7 @@
 function eachtick(obj, iterator, complete){
   var keys = Object.keys(obj);
   (function iterate(keys){
-    process.nextTick(function(){
+    nexttick(function(){
       // Return the key / value pair, wait for next callback
       iterator(keys[0], obj[keys[0]], function next(err, stop){
         // Stop iterating on error or stop instruction
@@ -32,6 +32,26 @@ function eachtick(obj, iterator, complete){
       });
     });
   })(keys);
-};
+}
 
-module.exports = eachtick;
+/**
+ *
+ * Cross-platform tick
+ *
+ * @param fn
+ *   Callback for each tick
+ * @returns {*}
+ *   Cached tick method
+ */
+function nexttick(fn) { return tick(fn, 0); }
+var tick = (typeof process !== 'undefined' && process.nextTick) ? process.nextTick
+  : (typeof setImmediate !== 'undefined') ? setImmediate
+  : setTimeout;
+
+
+/**
+ * Cross-platform exports
+ */
+if (typeof module !== 'undefined') {
+  module.exports = eachtick;
+}

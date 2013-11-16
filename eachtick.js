@@ -1,21 +1,22 @@
 /**
- *               .  .---.      .
- *               |    |  o     |
- *   .-. .-.  .-.|--. |  .  .-.|.-.
- *  (.-'(   )(   |  | |  | (   |-.'
- *   `--'`-'`-`-''  `-'-' `-`-''  `-
+ *                .  .---.      .
+ *                |    |  o     |
+ *    .-. .-.  .-.|--. |  .  .-.|.-.
+ *   (.-'(   )(   |  | |  | (   |-.'
+ *    `--'`-'`-`-''  `-'-' `-`-''  `-
  *
- *    Non-blocking for loop styled
- *       iteration for Node.js
- *
- *  --------------------------------
+ *  -----------------------------------
+ *  Non-blocking asynchronous iteration
+ *     for Node.js and the browser.
+ *  -----------------------------------
  *
  * @param obj
- *   Object to be iterated over
+ *   Object or array to be iterated over
  * @param iterator
- *   Callback for each iteration
+ *   Iterator to call each iteration
  * @param complete
- *   Iteration is complete
+ *   Iteration is complete, there was
+ *   an error, or stop was called
  */
 function eachtick(obj, iterator, complete){
   var keys = Object.keys(obj);

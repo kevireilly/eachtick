@@ -1,7 +1,7 @@
 {
   "name": "eachtick",
   "version": "0.0.3",
-  "description": "Non-blocking for loop styled iteration for Node.js",
+  "description": "Non-blocking asynchronous iteration for Node.js and the browser.",
   "main": "eachtick.js",
   "repository": {
     "type": "git",

@@ -1,0 +1,24 @@
+{
+  "name": "eachtick",
+  "version": "0.0.1",
+  "description": "Non-blocking for loop styled iteration for Node.js",
+  "main": "eachtick.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevireilly/eachTick.git"
+  },
+  "keywords": [
+    "eachtick",
+    "nexttick",
+    "for",
+    "loop",
+    "while",
+    "async"
+  ],
+  "author": "Kevin Reilly <kevin@vishun.net>",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/kevireilly/eachTick/issues"
+  }
+}

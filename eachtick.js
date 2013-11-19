@@ -32,7 +32,7 @@ function eachtick(obj, iterator, complete){
       // Return the key / value pair, wait for next callback
       iterator(keys[0], obj[keys[0]], function next(err, stop){
         // Stop iterating on error, stop instruction, or completion
-        if (err || stop || keys.length === 1) return complete ? complete(err, stop) : false;
+        if (err || stop || keys.length <= 1) return complete ? complete(err, stop) : false;
         // Grab a slice to go. Pepperoni please.
         return ((keys = keys.slice(1)).length && iterate(keys));
       });

@@ -10,6 +10,11 @@
  *     for Node.js and the browser.
  *  -----------------------------------
  *
+ */
+'use strict';
+if (typeof require !== 'undefined') require('setimmediate');
+
+/**
  * Perform iterations on each tick
  *
  * @param obj
@@ -20,8 +25,6 @@
  *   Iteration is complete, there was
  *   an error, or stop was called
  */
-'use strict';
-if (typeof require !== 'undefined') require('setimmediate');
 function eachtick(obj, iterator, complete){
   var keys = Object.keys(obj);
   (function iterate(keys){
@@ -42,8 +45,6 @@ function eachtick(obj, iterator, complete){
  * Node.js exports
  *
  */
-var isNode = false;
 if (typeof module !== 'undefined') {
-  isNode = true;
   module.exports = eachtick;
 }

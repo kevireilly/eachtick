@@ -10,21 +10,6 @@
  *     for Node.js and the browser.
  *  -----------------------------------
  *
- *  Set the tick method based on availability
- *
- * @returns {*}
- *   Instance of available tick method
- */
-function settick() {
-  return (typeof setImmediate !== 'undefined') ? setImmediate
-    : (typeof process !== 'undefined' && process.nextTick) ? process.nextTick
-    : setTimeout;
-}
-// Get and set the tick method immediately
-var _tick = _initial = settick();
-
-/**
- *
  * Perform iterations on each tick
  *
  * @param obj
@@ -35,15 +20,12 @@ var _tick = _initial = settick();
  *   Iteration is complete, there was
  *   an error, or stop was called
  */
+'use strict';
+if (typeof require !== 'undefined') require('setimmediate');
 function eachtick(obj, iterator, complete){
   var keys = Object.keys(obj);
-
-  // Without this, a large iteration causes
-  // "Maximum call stack size exceeded" errors
-  _tick = (isNode && keys.length > 999) ? setImmediate : _initial;
-
   (function iterate(keys){
-    nexttick(function(){
+    setImmediate(function(){
       // Return the key / value pair, wait for next callback
       iterator(keys[0], obj[keys[0]], function next(err, stop){
         // Stop iterating on error, stop instruction, or completion
@@ -53,19 +35,6 @@ function eachtick(obj, iterator, complete){
       });
     });
   })(keys);
-}
-
-/**
- *
- * Call the tick method
- *
- * @param fn
- *   Callback for each tick
- * @returns {*}
- *   Cached tick method
- */
-function nexttick(callback) {
-  return _tick(callback, 0);
 }
 
 /**

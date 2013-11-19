@@ -3,7 +3,7 @@ eachtick
 
 Non-blocking asynchronous iteration for Node.js and the browser.
 
-`eachtick` iterates over objects or arrays on each tick of the event loop by
+`eachtick` iterates over objects or arrays using setImmediate by
 calling an iterator function with a key, value, and completion callback. You
 can `break` out of iterations by passing an error or the stop instruction
 

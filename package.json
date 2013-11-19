@@ -20,5 +20,8 @@
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/kevireilly/eachtick/issues"
+  },
+  "dependencies": {
+    "setimmediate": "~1.0.1"
   }
 }

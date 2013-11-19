@@ -20,6 +20,11 @@ eachtick([ 1, 2, 3, 4, 5 ], function iterator(index, value, next) {
 }
 ```
 
+## Notes
+Tick methods used:
+* Node.js: process.nextTick or process.setImmediate
+** 1000 keys to iterate over causes a
+
 ## Installation
 ### For Node.js
 Install `eachtick` from the npm repository

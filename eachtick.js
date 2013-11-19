@@ -16,8 +16,8 @@
  *   Instance of available tick method
  */
 function settick() {
-  return (typeof process !== 'undefined' && process.nextTick) ? process.nextTick
-    : (typeof setImmediate !== 'undefined') ? setImmediate
+  return (typeof setImmediate !== 'undefined') ? setImmediate
+    : (typeof process !== 'undefined' && process.nextTick) ? process.nextTick
     : setTimeout;
 }
 // Get and set the tick method immediately

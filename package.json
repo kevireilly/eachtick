@@ -1,6 +1,6 @@
 {
   "name": "eachtick",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Non-blocking asynchronous iteration for Node.js and the browser.",
   "main": "eachtick.js",
   "repository": {

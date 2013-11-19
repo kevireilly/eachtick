@@ -8,15 +8,15 @@ calling an iterator function with a key, value, and completion callback. You
 can `break` out of iterations by passing an error or the stop instruction
 
 ```javascript
-eachtick([1,2,3,4,5], function(index, value, next) { // Iterator
+eachtick([ 1, 2, 3, 4, 5 ], function iterator(index, value, next) {
   console.log(index, value);
   // Break with an error
   //next('error');
   // Break without an error
   next(null, true);
-}, function(err, stop) { // Iteration complete
+}, function complete(err, stop) {
   if (err || stop) console.warn(err, stop);
-  console.log('Done');
+  console.log('Iteration complete');
 }
 ```
 
